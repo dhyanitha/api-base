@@ -1,0 +1,232 @@
+FORMAT: 1A
+HOST: 127.0.0.1:3000/api
+
+# APP
+
+# Group Credentials
+
+## Credentials bigbang [/credentials/bigbang]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (BigBang)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (BigBang)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
+
+## Credentials client [/credentials/client]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserRequest)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (UserRequest)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
+## Credentials client [/credentials/public]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserRequestPublic)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (UserRequestPublic)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
+## Credentials client [/credentials/invitation]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserRequestInvitation)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
++ Request (application/json)
+    + Attributes (UserRequestInvitation)
+
++ Response 409 (application/json; charset=utf-8)
+    + Attributes (FailResponse)
+
+## Credentials client [/credentials/confirmation]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserRequestConfirmation)
+
++ Response 204
+    
+## Credentials client [/credentials/activation]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserRequestActivation)
+
++ Response 204
+
+## Credentials bigbang [/credentials]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (UserCredentials)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (Auth)
+
+# Group Organizations
+
+## Organizations Collection [/organizations]
+
+### Get All Organizations [GET]
+Retrieve all organizations.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + OrganizationResponse
+
+### Create Organization [POST]
++ Request (application/json)
+    + Attributes (OrganizationRequest)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (OrganizationResponse)
+
+## Organization [/organizations/{id}]
++ Parameters
+    + id: 1 (required)
+
+### Delete Organization [DELETE]
++ Response 204
+
+## Organizations Users [/organizations/{id}/users]
++ Parameters
+    + id: 1 (required)
+
+### Get Organizations Users [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + UserResponse
+
+## Organization Count [/organizations/count]
+### Get Number [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (CountResponse)
+
+# Group Users
+
+## Users Collection [/users]
+
+### Get All Users [GET]
+Retrieve all users.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + UserResponse
+
+## User [/users/{id}]
++ Parameters
+    + id: 1 (required)
+
+### Get User [GET]
+Get user by id
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (UserResponse)
+
+# Data Structures
+
+## Auth
++ access_token (string, required)
+
+## UserCredentials
++ email: test@test.es (string, required)
++ password: 1234 (string, required)
+
+## BigBang
++ secret: secret (string, required)
+
+## UserRequest
++ email: test@test.es (string, required)
++ name: test (string, required)
++ organizationId: 1 (string, required)
++ password: 1234 (string, required)
+
+
+## UserRequestPublic
++ email: testpublic@test.es (string, required)
++ name: test public (string, required)
++ organizationId: 1 (string, required)
++ phone: 1234 (string, required)
+
+## UserRequestInvitation
++ email: testInvitation@test.es (string, required)
++ name: test invitation (string, required)
++ organizationId: 1 (string, required)
++ role: 1 (number, required)
+
+## UserRequestConfirmation
++ id: testInvitation@test.es (string, required)
++ hash: test invitation (string, required)
+
+## UserRequestActivation
++ email: testInvitation@test.es (string, required)
++ id: test invitation (string, required)
+
+
+
+## UserResponse
++ _id (string, required)
++ name (string, required)
++ email (string, required)
++ phone (string)
++ roles (array[number], required)
++ organizationId (string)
++ status (number, required)
+
+## CountResponse
++ data (number, required)
+
+## OrganizationResponse 
++ _id (string, required)
++ name (string, required)
++ email (string, required)
++ phone (string, required)
++ url (string, required)
++ address (string, required)
++ description (string, required)
++ image (string, required)
++ standardPrice (number, required)
++ reducedPrice (number, required)
+
+## OrganizationRequest
++ name: Nueva Organization (string, required)
++ email: a@a.es (string, required)
++ phone: 123456 (string, required)
++ url: localhost (string, required)
++ address: Calle false (string, required)
++ description: Organizacion nueva (string, required)
++ image: imagen (string, required)
++ standardPrice: 20 (number, required)
++ reducedPrice: 15 (number, required)
+
+## FailResponse
++ message (string, required)

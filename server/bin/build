@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var fs = require('fs-extra');
+var path = require('path');
+
+var pathSrc = path.join(__dirname, '..', 'node_modules')
+var pathDest = path.join(__dirname, '../..', 'dist/server/node_modules')
+console.log(`Coping ${pathSrc} to ${pathDest}`);
+
+fs.copy(pathSrc, pathDest, function (err) {
+    if (err) throw err;
+    console.log('Copy Success');
+})

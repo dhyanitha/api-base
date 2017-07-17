@@ -1,0 +1,44 @@
+{
+  "apps": [
+    {
+      "name": "App Base Server",
+      "script": "index.js",
+      "watch": true,
+      "cwd": "",
+      "env": {
+        "env": "dev",
+        "port": 3000,
+        "secret": "secret",
+        "database_name": "bookings",
+        "database_username": "",
+        "database_password": "",
+        "database_host": "localhost",
+        "database_port": 27017,
+        "mailer_port": 0,
+        "mailer_host": "",
+        "mailer_secure": false,
+        "mailer_ignoreTLS": true,
+        "mailer_user": "",
+        "mailer_pass": "",
+        "prod_path": ""
+      },
+      "env_production": {
+        "env": "prod",
+        "port": 3000,
+        "secret": "secret",
+        "database_name": "bookings",
+        "database_username": "",
+        "database_password": "",
+        "database_host": "localhost",
+        "database_port": 27017,
+        "mailer_port": 0,
+        "mailer_host": "",
+        "mailer_secure": false,
+        "mailer_ignoreTLS": true,
+        "mailer_user": "",
+        "mailer_pass": "",
+        "prod_path": ""
+      }
+    }
+  ]
+}

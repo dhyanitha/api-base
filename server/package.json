@@ -1,0 +1,57 @@
+{
+  "name": "server-app-base",
+  "version": "0.10.0",
+  "description": "Server with Angular Based Technology",
+  "main": "index.js",
+  "scripts": {
+    "test": "dredd",
+    "build": "webpack --config ./webpack.config.js --progress --display-error-details && node ./bin/build",
+    "start": "set NODE_ENV=dev&&nodemon -e ts --watch src ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgoraBinaria/angular-base.git"
+  },
+  "author": {
+    "name": "Ágora Binaria S.L.",
+    "email": "albertobasalo@agorabinaria.com",
+    "url": "http://agorabinaria.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AgoraBinaria/angular-base/issues"
+  },
+  "homepage": "https://github.com/AgoraBinaria/angular-base#readme",
+  "dependencies": {
+    "@nestjs/common": "3.0.0",
+    "@nestjs/core": "3.0.1",
+    "@nestjs/microservices": "3.0.1",
+    "@nestjs/websockets": "3.0.0",
+    "body-parser": "1.17.2",
+    "cors": "2.8.3",
+    "express": "4.15.3",
+    "iridium": "7.2.2",
+    "jsonwebtoken": "7.4.1",
+    "mongodb": "2.2.28",
+    "nodemailer": "4.0.1",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "6.0.0-alpha.0",
+    "tslib": "1.7.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.16.4",
+    "@types/cors": "2.8.1",
+    "@types/express": "4.0.36",
+    "@types/jsonwebtoken": "7.2.1",
+    "@types/mongodb": "2.2.6",
+    "@types/node": "8.0.4",
+    "dredd": "4.0.0",
+    "fs-extra": "3.0.1",
+    "nodemon": "1.11.0",
+    "ts-lint": "4.5.1",
+    "ts-loader": "2.2.0",
+    "ts-node": "3.1.0",
+    "typescript": "2.4.1",
+    "webpack": "2.6.1"
+  }
+}

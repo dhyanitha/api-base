@@ -1,0 +1,44 @@
+{
+  "apps": [
+    {
+      "name": "App Base Server",
+      "script": "index.js",
+      "watch": true,
+      "cwd": "",
+      "env": {
+        "env": "dev",
+        "port": 3000,
+        "secret": "secret",
+        "database_name": "base",
+        "database_username": "",
+        "database_password": "",
+        "database_host": "localhost",
+        "database_port": 27017,
+        "mailer_port": 25,
+        "mailer_host": "debugmail.io",
+        "mailer_secure": false,
+        "mailer_ignoreTLS": true,
+        "mailer_user": "admin@agorabinaria.com",
+        "mailer_pass": "82fdc8b0-55ae-11e7-954e-d7f004b08dd1",
+        "prod_path": ""
+      },
+      "env_production": {
+        "env": "prod",
+        "port": 3000,
+        "secret": "secret",
+        "database_name": "bookings",
+        "database_username": "",
+        "database_password": "",
+        "database_host": "localhost",
+        "database_port": 27017,
+        "mailer_port": 25,
+        "mailer_host": "debugmail.io",
+        "mailer_secure": false,
+        "mailer_ignoreTLS": true,
+        "mailer_user": "admin@agorabinaria.com",
+        "mailer_pass": "82fdc8b0-55ae-11e7-954e-d7f004b08dd1",
+        "prod_path": ""
+      }
+    }
+  ]
+}

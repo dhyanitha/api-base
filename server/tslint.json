@@ -1,0 +1,29 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rulesDirectory": [],
+    "rules": {
+        "quotemark": [
+            "single"
+        ],
+        "max-classes-per-file": [
+            false
+        ],
+        "no-string-literal": false,
+        "arrow-parens": false,
+        "variable-name": [
+            "allow-leading-underscore"
+        ],
+        "no-var-requires": false,
+        "object-literal-sort-keys": false,
+        "trailing-comma": [
+            false
+        ],
+        "only-arrow-functions": [
+            false
+        ],
+        "no-unused-variable": true
+    }
+}
