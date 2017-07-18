@@ -39,6 +39,12 @@ export class UsersService {
     return user;
   }
 
+  public async getByRole(role: ROLE): Promise<IUser[]> {
+    const repository = await this.repository;
+    const users = await repository.find({ roles: role }).map(doc => doc.document);
+    return users;
+  }
+
   public async post(newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
     const savedUser = await repository.insert(newUser);
