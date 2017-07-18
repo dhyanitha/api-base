@@ -7,7 +7,7 @@ import { ForbiddenException } from './../shared/exceptions';
  * @param user The session of the user
  * @param roles Array of roles to be authorized, if none all is authorized
  */
-export function roles(user: IUser, roles?: ROLE[]) {
+export function checkUserRoles(user: IUser, roles?: ROLE[]) {
   let isAuthorized = true;
   if (roles) {
     isAuthorized = roles.some(rol => {
@@ -17,7 +17,7 @@ export function roles(user: IUser, roles?: ROLE[]) {
     });
   }
   if (!isAuthorized) {
-    throw new ForbiddenException('No enogugh rol');
+    throw new ForbiddenException('No enough role');
   }
 }
 

@@ -47,9 +47,8 @@ export class UsersService {
 
   public async updateStatus(id: string, newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
-    const obj = {};
-    obj['status'] = newUser.status;
-    const savedUser = await repository.update({ _id: id }, { $set: obj });
+    const set = { status: newUser.status };
+    const savedUser = await repository.update({ _id: id }, { $set: set });
     return this.getById(newUser._id);
   }
 

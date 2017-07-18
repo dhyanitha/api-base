@@ -81,10 +81,15 @@ export class CredentialsController {
   }
 
   @Patch('newPassword')
-  public async postNewCredentials( @Res() res: Response, @Body() newCredentials: ICredential, @Session() session: ICredential) {
-    //newCredentials.userId = session._id;
+  public async postNewCredentials(
+    @Res() res: Response,
+    @Body() newCredentials: ICredential,
+    @Session() session: ICredential) {
+    this.logger.value('session', session);
+    newCredentials.userId = session._id;
+    this.logger.value('newCredentials', newCredentials);
     await this.credentialsLogic.updateCredential(newCredentials);
-    res.status(HttpStatus.OK);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
 }
