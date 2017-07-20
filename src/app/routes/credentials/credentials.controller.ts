@@ -4,7 +4,6 @@ import { SETTINGS } from '../../../environments/environment';
 import { LoggerService } from "../../core/shared/logger.service";
 import { UsersService } from "../users/users.service";
 import { ROLE } from "./../../core/shared/enums";
-import { CredentialsLogic } from "./credentials.logic";
 import {
   IUserActivation,
   IUserClientRegistration, IUserConfirmation,
@@ -12,12 +11,31 @@ import {
   IUserInvitation, IUserPublicRegistration, IUserAcceptInvitation,
   ICredential
 } from "./credentials.models";
+import { CredentialsLogic } from "./credentials.logic";
 
 @Controller('credentials')
 export class CredentialsController {
   private logger: LoggerService = new LoggerService('CredentialsController');
   constructor(
     private credentialsLogic: CredentialsLogic) { }
+
+  @Get('bigbang')
+  public async getBigBang( @Res() res: Response) {
+    const godUsers = await this.credentialsLogic.getGodUser();
+    if (godUsers && godUsers.length > 0) {
+      this.logger.value('getBigBang', godUsers);
+      res.status(HttpStatus.OK).json(godUsers);
+      return;
+    }
+    const userRegistration: IUserGodRegistration = {
+      email: 'admin@agorabinaria.com',
+      name: 'System Administrator',
+      password: SETTINGS.secret
+    };
+    const newGodUser = await this.credentialsLogic.postUserGodRegistration(userRegistration);
+    this.logger.value('newGodUser', newGodUser);
+    res.status(HttpStatus.CREATED).json(newGodUser);
+  }
 
   @Post('bigbang')
   public async postUserGodRegistration( @Res() res: Response, @Body() secret: any) {
@@ -81,10 +99,15 @@ export class CredentialsController {
   }
 
   @Patch('newPassword')
-  public async postNewCredentials( @Res() res: Response, @Body() newCredentials: ICredential, @Session() session: ICredential) {
-    //newCredentials.userId = session._id;
+  public async postNewCredentials(
+    @Res() res: Response,
+    @Body() newCredentials: ICredential,
+    @Session() session: ICredential) {
+    this.logger.value('session', session);
+    newCredentials.userId = session._id;
+    this.logger.value('newCredentials', newCredentials);
     await this.credentialsLogic.updateCredential(newCredentials);
-    res.status(HttpStatus.OK);
+    res.status(HttpStatus.NO_CONTENT).send();
   }
 
 }

@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/AgoraBinaria/angular-base#readme",
   "dependencies": {
-    "@nestjs/common": "3.0.0",
+    "@nestjs/common": "^3.0.0",
     "@nestjs/core": "3.0.1",
     "@nestjs/microservices": "3.0.1",
     "@nestjs/websockets": "3.0.0",

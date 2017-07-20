@@ -39,6 +39,12 @@ export class UsersService {
     return user;
   }
 
+  public async getByRole(role: ROLE): Promise<IUser[]> {
+    const repository = await this.repository;
+    const users = await repository.find({ roles: role }).map(doc => doc.document);
+    return users;
+  }
+
   public async post(newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
     const savedUser = await repository.insert(newUser);
@@ -47,9 +53,8 @@ export class UsersService {
 
   public async updateStatus(id: string, newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
-    const obj = {};
-    obj['status'] = newUser.status;
-    const savedUser = await repository.update({ _id: id }, { $set: obj });
+    const set = { status: newUser.status };
+    const savedUser = await repository.update({ _id: id }, { $set: set });
     return this.getById(newUser._id);
   }
 

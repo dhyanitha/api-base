@@ -26,6 +26,11 @@ export class CredentialsLogic {
     private credentialsService: CredentialsService,
     private usersService: UsersService) { }
 
+  public async getGodUser(): Promise<IUser[]> {
+    const godUser = await this.usersService.getByRole(ROLE.GOD);
+    return godUser;
+  }
+
   public async postUserClientRegistration(userRegistration: IUserClientRegistration) {
     let newUser = this.createUserFromUserClientRegistration(userRegistration);
     newUser = await this.usersService.post(newUser);
