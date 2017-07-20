@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "dredd",
-    "build": "webpack --config ./webpack.config.js --progress --display-error-details && node ./bin/build",
+    "build": "tsc && webpack --config ./webpack.config.js --progress --display-error-details && node ./bin/build",
     "start": "set NODE_ENV=dev&&nodemon -e ts --watch src ./index.js"
   },
   "repository": {
@@ -30,7 +30,7 @@
     "body-parser": "1.17.2",
     "cors": "2.8.3",
     "express": "4.15.3",
-    "iridium": "7.2.2",
+    "iridium": "^8.0.0-alpha.2",
     "jsonwebtoken": "7.4.1",
     "mongodb": "2.2.28",
     "nodemailer": "4.0.1",
@@ -52,6 +52,8 @@
     "ts-loader": "2.2.0",
     "ts-node": "3.1.0",
     "typescript": "2.4.1",
-    "webpack": "2.6.1"
+    "webpack": "^2.7.0",
+    "webpack-node-externals": "^1.6.0",
+    "zip-folder": "^1.0.0"
   }
 }
