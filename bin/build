@@ -2,12 +2,25 @@
 
 var fs = require('fs-extra');
 var path = require('path');
+var zipFolder = require('zip-folder');
 
 var pathSrc = path.join(__dirname, '..', 'node_modules')
-var pathDest = path.join(__dirname, '../..', 'dist/server/node_modules')
+var pathDest = path.join(__dirname, '..', 'compile/node_modules')
+var zipSrc = path.join(__dirname, '..', 'compile')
+var zipDest = path.join(__dirname, '..', 'server.zip')
+
 console.log(`Coping ${pathSrc} to ${pathDest}`);
 
 fs.copy(pathSrc, pathDest, function (err) {
-    if (err) throw err;
-    console.log('Copy Success');
+  if (err) throw err;
+  console.log('Copy Success');
+  zipFolder(zipSrc, zipDest, function (err) {
+    if (err) {
+      console.log('oh no!', err);
+    } else {
+      console.log('Zip Ok');
+    }
+  });
 })
+
+
