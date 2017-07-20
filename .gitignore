@@ -59,4 +59,4 @@ typings/
 
 compile/
 dist/
-server.zip
+server*.zip
