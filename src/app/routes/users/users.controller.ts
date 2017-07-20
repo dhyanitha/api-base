@@ -2,10 +2,11 @@ import { Body, Controller, Delete, ExceptionFilters, Get, HttpStatus, Param, Pos
 import { Request, Response } from 'express';
 import { IUser } from "./users.models";
 import { UsersService } from './users.service';
+import { UsersLogic } from './users.logic';
 
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private usersLogic: UsersLogic) { }
 
   @Get()
   public async getAll( @Res() res: Response) {
@@ -34,6 +35,13 @@ export class UsersController {
     } else {
       res.status(HttpStatus.NOT_FOUND).json({ message: 'User not found' });
     }
+  }
+
+ @Get('/administratedUsers')
+  public async getAdministratedUsers( @Res() res: Response, @Session() session: IUser) {
+    const userId = session._id;
+    const users= await this.usersLogic.getAdministratedUsers(userId);
+    res.status(HttpStatus.OK).json(users);
   }
 
   @Delete('/:id')

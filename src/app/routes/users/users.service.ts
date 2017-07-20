@@ -45,6 +45,12 @@ export class UsersService {
     return users;
   }
 
+  public async getByOrganizationId(organizationId:string): Promise<IUser[]> {
+    const repository = await this.repository;
+    const users = await repository.find({ organizationId: organizationId }).map(doc => doc.document);
+    return users;
+  }
+
   public async post(newUser: IUser): Promise<IUser> {
     const repository = await this.repository;
     const savedUser = await repository.insert(newUser);
@@ -57,9 +63,6 @@ export class UsersService {
     const savedUser = await repository.update({ _id: id }, { $set: set });
     return this.getById(newUser._id);
   }
-
-
-
 
   public async remove(id: string): Promise<void> {
     const repository = await this.repository;
