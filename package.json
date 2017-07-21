@@ -1,6 +1,6 @@
 {
   "name": "server-app-base",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "description": "Server with Angular Based Technology",
   "main": "index.js",
   "scripts": {
